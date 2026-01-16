@@ -41,29 +41,28 @@ Khi tôi chỉnh sửa /etc/hosts, JetBrains bắt đầu từ chối 127.0.0.1 
 ### Trên Windows, cơ chế bảo mật mạng hoạt động khác. Windows Firewall mặc định không hỗ trợ chặn gói tin dựa trên "chuỗi Hex" (Deep Packet Inspection) giống như Linux.
 - Tuy nhiên, bạn vẫn có thể đạt được mục đích "chặn JetBrains gọi về nhà" trên Windows bằng cách làm theo 2 bước sau. Cách này tương đương với giải pháp "gắt" mà tác giả đoạn văn nhắc tới:
 - Bước 1: Sửa file Hosts (Cơ bản)
-
-+) Đây là bước đầu tiên để điều hướng các địa chỉ của JetBrains về "ngõ cụt" (0.0.0.0).
-+) Mở Start Menu, gõ Notepad.
-Chuột phải vào Notepad chọn Run as administrator (Chạy với quyền Admin).
-Trong Notepad, chọn File > Open, dán đường dẫn này vào ô Address bar rồi Enter: C:\Windows\System32\drivers\etc\
-Chọn hiển thị All Files (.) ở góc dưới bên phải để thấy file tên là hosts.
-Mở file hosts, thêm các dòng sau vào cuối file:
-Lưu lại (Ctrl + S).
-Lưu ý: Như đoạn hướng dẫn gốc của bạn đã cảnh báo, JetBrains rất "khôn". Nếu nó thấy file hosts chặn, nó sẽ tự động bỏ qua và cố kết nối trực tiếp đến Google DNS (8.8.8.8) để tìm IP thật. Vì thế, trên Windows, bạn bắt buộc phải làm thêm Bước 2 để chặn triệt để.
+  * Đây là bước đầu tiên để điều hướng các địa chỉ của JetBrains về "ngõ cụt" (0.0.0.0).
+  * Mở Start Menu, gõ Notepad.
+  * Chuột phải vào Notepad chọn Run as administrator (Chạy với quyền Admin).
+  * Trong Notepad, chọn File > Open, dán đường dẫn này vào ô Address bar rồi Enter: C:\Windows\System32\drivers\etc\
+  * Chọn hiển thị All Files (.) ở góc dưới bên phải để thấy file tên là hosts.
+  * Mở file hosts, thêm các dòng sau vào cuối file:
+  * Lưu lại (Ctrl + S).
+  * Lưu ý: Như đoạn hướng dẫn gốc của bạn đã cảnh báo, JetBrains rất "khôn". Nếu nó thấy file hosts chặn, nó sẽ tự động bỏ qua và cố kết nối trực tiếp đến Google DNS (8.8.8.8) để tìm IP thật. Vì thế, trên Windows, bạn bắt buộc phải làm thêm Bước 2 để chặn triệt để.
 - Bước 2: Dùng Windows Firewall chặn ứng dụng (Nâng cao)
-Thay vì chặn DNS phức tạp như Linux, trên Windows cách hiệu quả nhất là cấm hoàn toàn ứng dụng IDE kết nối Internet.
-Mở Start Menu, gõ "Windows Defender Firewall with Advanced Security" và mở nó lên.
-Ở cột bên trái, chọn Outbound Rules (Luật đi ra).
-Ở cột bên phải, chọn New Rule...
-Chọn Program > Next.
-Chọn This program path, bấm Browse và tìm đến file chạy của IDE bạn đang dùng.
-Ví dụ IntelliJ: C:\Program Files\JetBrains\IntelliJ IDEA 2023.x\bin\idea64.exe
-Bấm Next, chọn Block the connection (quan trọng nhất).
-Tích chọn cả 3 ô: Domain, Private, Public > Next.
-Đặt tên (ví dụ: Block IntelliJ) và bấm Finish.
-Tại sao làm thế này lại hiệu quả trên Windows?
-Cách làm này còn "gắt" hơn cả đoạn code Linux kia.
-Linux code: Chỉ chặn gói tin hỏi đường (DNS). Nếu IDE biết sẵn IP, nó vẫn kết nối được.
+  * Thay vì chặn DNS phức tạp như Linux, trên Windows cách hiệu quả nhất là cấm hoàn toàn ứng dụng IDE kết nối Internet.
+  * Mở Start Menu, gõ "Windows Defender Firewall with Advanced Security" và mở nó lên.
+  * Ở cột bên trái, chọn Outbound Rules (Luật đi ra).
+  * Ở cột bên phải, chọn New Rule...
+  * Chọn Program > Next.
+  * Chọn This program path, bấm Browse và tìm đến file chạy của IDE bạn đang dùng.
+  * Ví dụ IntelliJ: C:\Program Files\JetBrains\IntelliJ IDEA 2023.x\bin\idea64.exe
+  * Bấm Next, chọn Block the connection (quan trọng nhất).
+  * Tích chọn cả 3 ô: Domain, Private, Public > Next.
+  * Đặt tên (ví dụ: Block IntelliJ) và bấm Finish.
+  * Tại sao làm thế này lại hiệu quả trên Windows?
+  * Cách làm này còn "gắt" hơn cả đoạn code Linux kia.
+  * Linux code: Chỉ chặn gói tin hỏi đường (DNS). Nếu IDE biết sẵn IP, nó vẫn kết nối được.
 Windows Firewall (Bước 2): Cắt hoàn toàn đường ra Internet của riêng ứng dụng đó. Dù IDE có đổi DNS, có dùng 4G hay Wifi, nó cũng không thể gửi bất kỳ byte dữ liệu nào ra ngoài.
 
 Nhược điểm: Bạn sẽ không thể update IDE tự động hoặc tải plugin từ Marketplace trong IDE (phải tải file plugin về cài tay). Nếu bạn chấp nhận làm việc offline hoàn toàn thì đây là cách an toàn nhất trên Windows.
