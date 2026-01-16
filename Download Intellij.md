@@ -1,5 +1,6 @@
 #### Use ja-netfilter agent (jetbrain)
 
+- Download Intellij tại đây: https://www.jetbrains.com.cn/en-us/idea/download/other.html
 - Truy cập vào đường link sau để tải Jetbra: `https://3.jetbra.in/`
 - Download jetbra.zip
 - Giải nén và tìm đến file `\jetbra\vmoptions\idea.vmoptions`, copy từ dòng thứ 2 đến hết và thay thế từ dòng thứ 2 đến hết của file `\IntelliJ IDEA 2024.1.4\bin\idea64.exe.vmoptions` (tìm đến file này thì chuột phải 
@@ -40,8 +41,9 @@ Khi tôi chỉnh sửa /etc/hosts, JetBrains bắt đầu từ chối 127.0.0.1 
 ### Trên Windows, cơ chế bảo mật mạng hoạt động khác. Windows Firewall mặc định không hỗ trợ chặn gói tin dựa trên "chuỗi Hex" (Deep Packet Inspection) giống như Linux.
 - Tuy nhiên, bạn vẫn có thể đạt được mục đích "chặn JetBrains gọi về nhà" trên Windows bằng cách làm theo 2 bước sau. Cách này tương đương với giải pháp "gắt" mà tác giả đoạn văn nhắc tới:
 - Bước 1: Sửa file Hosts (Cơ bản)
-Đây là bước đầu tiên để điều hướng các địa chỉ của JetBrains về "ngõ cụt" (0.0.0.0).
-Mở Start Menu, gõ Notepad.
+
++) Đây là bước đầu tiên để điều hướng các địa chỉ của JetBrains về "ngõ cụt" (0.0.0.0).
++) Mở Start Menu, gõ Notepad.
 Chuột phải vào Notepad chọn Run as administrator (Chạy với quyền Admin).
 Trong Notepad, chọn File > Open, dán đường dẫn này vào ô Address bar rồi Enter: C:\Windows\System32\drivers\etc\
 Chọn hiển thị All Files (.) ở góc dưới bên phải để thấy file tên là hosts.
