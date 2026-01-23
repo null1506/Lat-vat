@@ -66,4 +66,5 @@ Khi tôi chỉnh sửa /etc/hosts, JetBrains bắt đầu từ chối 127.0.0.1 
 Windows Firewall (Bước 2): Cắt hoàn toàn đường ra Internet của riêng ứng dụng đó. Dù IDE có đổi DNS, có dùng 4G hay Wifi, nó cũng không thể gửi bất kỳ byte dữ liệu nào ra ngoài.
     * Nhược điểm: Bạn sẽ không thể update IDE tự động hoặc tải plugin từ Marketplace trong IDE (phải tải file plugin về cài tay). Nếu bạn chấp nhận làm việc offline hoàn toàn thì đây là cách an toàn nhất trên Windows.
 
-
+#### Cách debug
+https://ezyplatform.com/blog/cach-run-va-debug-voi-intellij
